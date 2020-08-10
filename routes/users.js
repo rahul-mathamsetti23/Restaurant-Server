@@ -2,7 +2,7 @@ var express = require('express');
 const bodyParser = require('body-parser');
 var User = require('../models/user');
 var passport = require('passport');
-var authenticate = require('./authenticate');
+var authenticate = require('../authenticate');
 
 var router = express.Router();
 router.use(bodyParser.json());
@@ -18,7 +18,7 @@ router.post('/signup', (req, res, next) => {
     if(err) {
       res.statusCode = 200;
       res.setHeader('Content-Type', 'application/json');
-      res,json({ err: err});
+      res.json({ err: err});
     }
     else {
       passport.authenticate('local')(req, res, () => {
